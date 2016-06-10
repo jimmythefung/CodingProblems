@@ -13,6 +13,10 @@ int main(){
     cout << "size of double: "      << sizeof(double)      << " bytes." << endl;  // 8 bytes, 64 bits
     cout << "size of long double: " << sizeof(long double) << " bytes." << endl;  // 16 bytes, 128 bits
     
+    cout << "size of unsigned: "           << sizeof(unsigned)          << " bytes." << endl;  // 4 bytes, 32 bits
+    cout << "size of unsigned long: "      << sizeof(unsigned long)     << " bytes." << endl;  // 8 bytes, 64 bits
+    cout << "size of unsigned long long: " << sizeof(unsigned long long)<< " bytes." << endl;  // 8 bytes, 64 bits
+    
     void *p;
     cout << "size of void pointer: " << sizeof(p)          << " bytes." << endl;  // 8 bytes, 64 bits
     return 0;
