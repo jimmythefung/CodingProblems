@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 using namespace std;
 
 int main(){
@@ -16,6 +17,11 @@ int main(){
     cout << "size of unsigned: "           << sizeof(unsigned)          << " bytes." << endl;  // 4 bytes, 32 bits
     cout << "size of unsigned long: "      << sizeof(unsigned long)     << " bytes." << endl;  // 8 bytes, 64 bits
     cout << "size of unsigned long long: " << sizeof(unsigned long long)<< " bytes." << endl;  // 8 bytes, 64 bits
+
+    cout << "numeric_limits<int>::min(): " << numeric_limits<int>::min() << endl;
+    cout << "numeric_limits<int>::max(): " << numeric_limits<int>::max() << endl;
+    cout << "numeric_limits<float>::min(): " << numeric_limits<float>::min() << endl;
+    cout << "numeric_limits<float>::max(): " << numeric_limits<float>::max() << endl;
     
     void *p;
     cout << "size of void pointer: " << sizeof(p)          << " bytes." << endl;  // 8 bytes, 64 bits
