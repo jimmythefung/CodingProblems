@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-int CountBits(unsigned long long x);
-int computeParity(unsigned long long x);
-int computeParity2(unsigned long long x);
+int CountBits(unsigned long long x); // unsigned long long is big enough to store 64 bits x
+int parityO_n(unsigned long long x);
+int parityO_s(unsigned long long x);
 
 int main(){
     unsigned long long v; // create some value whose parity to be tested
@@ -11,7 +11,7 @@ int main(){
 
     cout << "Enter a number to compute its parity: " << endl;
     cin >> v;
-    parity = computeParity2(v);
+    parity = parityO_s(v);
     cout << "The parity of " << v << " is: " << parity << endl;
 
     return 0;
@@ -26,7 +26,7 @@ int CountBits(unsigned long long x){
     return num_bits;
 }
 
-int computeParity(unsigned long long x){
+int parityO_n(unsigned long long x){
     int n = 0;
     int parity = 0;
     
@@ -42,7 +42,7 @@ int computeParity(unsigned long long x){
     return parity;
 }
 
-int computeParity2(unsigned long long x){
+int parityO_s(unsigned long long x){
     unsigned long long y;
     int i=0;
     while (x){
