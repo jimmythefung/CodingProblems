@@ -3,6 +3,7 @@ using namespace std;
 
 int CountBits(unsigned long long x);
 int computeParity(unsigned long long x);
+int computeParity2(unsigned long long x);
 
 int main(){
     unsigned long long v; // create some value whose parity to be tested
@@ -10,10 +11,19 @@ int main(){
 
     cout << "Enter a number to compute its parity: " << endl;
     cin >> v;
-    parity = computeParity(v);
+    parity = computeParity2(v);
     cout << "The parity of " << v << " is: " << parity << endl;
 
     return 0;
+}
+
+int CountBits(unsigned long long x){
+    int num_bits = 0; // counter of number of bits
+    while (x){
+        num_bits = num_bits + (x & 1);
+        x = x >> 1;
+    }
+    return num_bits;
 }
 
 int computeParity(unsigned long long x){
@@ -32,13 +42,16 @@ int computeParity(unsigned long long x){
     return parity;
 }
 
-
-
-int CountBits(unsigned long long x){
-    int num_bits = 0; // counter of number of bits
+int computeParity2(unsigned long long x){
+    unsigned long long y;
+    int i=0;
     while (x){
-        num_bits = num_bits + (x & 1);
-        x = x >> 1;
+        y = x & ~(x-1);
+        x = x ^ y;
+        i++;
     }
-    return num_bits;
+
+    return (i%2==1) ? 1:0;
 }
+
+
