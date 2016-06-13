@@ -1,7 +1,9 @@
 # The Dutch National Flag Problem  
+The Dutch national flag problem is about a modification to the "PARTITION(A, p, r)" routine used in quicksort, so that pivot values are always preceeded by elements smaller than pivots.  
+(PARTITION() does not require so - elements equal or smaller than pivot just have to preceed elements bigger than pivot).
 
-The solution involves "pivoting" in a fashion similar to that used in quicksort.
-So a quicksort is first implemented as review/warm up.  
+So a partition(), quicksort(), swap() are first implemented as review/warm up.  
+Then a **dutchPartition()** is implemented.
 
 ## A review of Qicksort from CLRS (Chapter 7.1) - average complexity: O(nlogn)  
 QUICKSORT(A, p, r)
@@ -10,7 +12,6 @@ if p < r
     q = PARTITION(A, p, r)
     QUICKSORT(A, p, q-1)
     QUICKSORT(A, q+1, r)
-
 ```
 
 ## PARTITION()  
@@ -35,3 +36,6 @@ for j= p to r-1
 exchange A[i+1] with A[j]
 return i+1
 ```
+
+## dutchPartition(A, start, end)  
+- Requires a swap to move the pivot forward if A[left] == pivot.
