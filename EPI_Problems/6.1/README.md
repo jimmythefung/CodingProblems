@@ -17,7 +17,7 @@ if p < r
 ## PARTITION()  
 The partition() does the heavy lifting. The idea is to maintain 3 regions:  
     1. left most region of array A contains elements smaller than pivot (defined to be x=A[r])
-    2. followed by region contains elements bigger than pivot
+    2. followed by region contains elements bigger than pivot  
     3. followed by region contains elements of yet to be compared to x  
 
 Given an index k, p (begining of array), and r (end of array):  
@@ -25,7 +25,7 @@ Region 1 is bounded by k <= i
 Region 2 is bounded by i < k < j  
 Region 3 is bounded by j < k  
 
-PARTITION(A, p, r)  
+PARTITION(A, p, r)
 ```
 x = A[r]
 i = p-1
@@ -35,7 +35,18 @@ for j= p to r-1
         exchange A[i] with A[j]
 exchange A[i+1] with A[j]
 return i+1
-```
+```  
 
-## dutchPartition(A, start, end)  
-- Requires a swap to move the pivot forward if A[left] == pivot.
+## dutchPartition(A, start, end) 
+Idea:  
+Any partitioning related problem generally manages work according to "regions".  
+In PARTITION given by CLRS, there are 3 regions: A = [ (less than pivot)--> (greater than pivot)--> (to be checked) ].  
+In EPI, the author suggests checked regions be grow from the ends: A = [(less than pivot)--> (to be checked) <--(greater pivot)].  
+In either case, two indice (i.e. i, j) are needed to keep track of the boundaries.  
+
+For the dutch partition, there are 3 insights:  
+    1. Trying to manage elements=pivot using hueristic movements, while keeping 3 regions, doesn't work.
+    2. Use 4 regions A = [(less than pivot) --> (to be checked) <-- (equal to pivot) <-- (greater than pivot)]  
+    3. Consequently  Use 3 indice to keep track of boundaries.  
+
+See main.cpp
