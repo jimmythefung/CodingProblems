@@ -37,17 +37,28 @@ exchange A[i+1] with A[j]
 return i+1
 ```  
 
-## dutchPartition(A, pivot_index) 
-Idea:  
+## dutchPartition(A, pivot_index)  
+Brute force:  
+1. O(n) space O(n) time - Do two pass: first pass move all less-than elements, second pass move all greater-than elements.  
+2. O(1) space O(n^2) time - use nested iteration similar to insertion sort to swap elements into regions.  
+
+**O(n) time, O(1) space - idea:**  
 Any partitioning related problem generally manages work according to "regions".  
+
 In PARTITION given by CLRS, there are 3 regions: A = [ (less than pivot)--> (greater than pivot)--> (to be checked) ].  
+  
 In EPI, the author suggests checked regions be grow from the ends: A = [(less than pivot)--> (to be checked) <--(greater pivot)].  
 In either case, two indice (i.e. i, j) are needed to keep track of the boundaries.  
-
+  
 For the dutch partition, there are 3 insights:  
     1. Trying to manage elements=pivot using hueristic movements, while keeping 3 regions, doesn't work.  
     2. Use 4 regions A = [(less than pivot) --> (to be checked) <-- (equal to pivot) <-- (greater than pivot)]  
     3. Consequently  Use 3 indice to keep track of boundaries.  
 
+Invariants:  
+    - less than pivot region:       [0 to i]  
+    - to be checked (unclassified): [i+1 to j-1]  
+    - equal to pivot region:        [j to k]  
+    - greater than pivot region:    [k+1 to A.size()-1]  
 Note a stinky corner case where the given array A begins and end with the value of the pivot, the initialization of the "equal to pivot" region takes some careful treatment.  
 See main.cpp
