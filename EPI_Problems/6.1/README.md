@@ -55,10 +55,12 @@ For the dutch partition, there are 3 insights:
     2. Use 4 regions A = [(less than pivot) --> (to be checked) <-- (equal to pivot) <-- (greater than pivot)]  
     3. Consequently  Use 3 indice to keep track of boundaries.  
 
-Invariants:  
-    - less than pivot region:       [0 to i]  
-    - to be checked (unclassified): [i+1 to j-1]  
-    - equal to pivot region:        [j to k]  
-    - greater than pivot region:    [k+1 to A.size()-1]  
+Loop Invariants (regions in array A):  
+    - Less than pivot:       [0 to i]  
+    - Unclassified:          [i+1 to j-1]  
+    - Equal to pivot:        [j to k]  
+    - Greater than pivot:    [k+1 to A.size()-1]  
+  
+  
 Note a stinky corner case where the given array A begins and end with the value of the pivot, the initialization of the "equal to pivot" region takes some careful treatment.  
 See main.cpp
