@@ -6,11 +6,11 @@ Hint - treat one integer at a time.
   
 ## mystoi  
 Insight:  
-    - obtain integer using offset from the ASCII char '0'
+    - obtain integer using offset from the ASCII char '0'  
     - obtain correct base10's position, i,  using pow(10, i)  
   
 ## myitos  
-Insight:
+Insight:  
     - obtain correct value of base10's position by finding the remainder using mod 10. i.e remainder = 496 % 10 = 6  
   
 ## Misc  
