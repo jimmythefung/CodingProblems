@@ -10,19 +10,28 @@ using namespace std;
 /* Function Prototyes */
 void printv(vector<int>& A);
 string myitos(int x);
+string getstr(int v);
 int mystoi(string s);
 int getint(char c);
+int isNeg(int x);
+void sreverse(string& s);
 
 int main(){
-    string s = "-65550";
-    cout << "Input string: " << s << " is type: " << typeid(s).name() << endl;
-    // string to integer
-    cout << "mystoi output: "  << mystoi(s) << " is type: " << typeid(mystoi(s)).name() << endl;
+   
+    // test integer to string
+    int val = -203914;
+    cout << "Convert interger "<< val << " to string: '"<< myitos(val) << "'"<< endl;
 
-    // integer to string
+    // test string to integer
+    string s = "-42912";
+    cout << "Convert string '"<<s<<"' to integer: "<< mystoi(s) << endl;
 
-    
+
+    // Other testing
     /*
+    cout << "-128 is negative?: "<< isNeg(-128) << endl;
+    cout << "127 is negative?: "<< isNeg(127) << endl;
+    cout << (int)sizeof(s) << endl; // return type of sizeof() is 'size_t' 32 bytes
     int c;
     c = s[0]-'0';
     cout << c << endl;
@@ -39,6 +48,43 @@ void printv(vector<int>& A){
         cout << *it << " ";
     }
     cout << endl;
+}
+
+string myitos(int x){
+    string signplace   = "";
+    string significant = "";
+    int r = 0;
+    string result ="";
+
+    // determines signplace
+    signplace = (x < 0) ? "-" : "";
+
+
+    // conversion
+    x = (x<0) ? -x : x; // x must be positive number for proper mod operation
+    while(x != 0){
+        r = x % 10; // r = 496 % 10 = 6 
+        significant = significant + getstr(r);
+        x = (x-r)/10; // (496-6)/10 = 49
+    }
+
+    // reuslt is reversed concatenated
+    result = significant + signplace;
+    sreverse(result);
+    return result;
+}
+
+void sreverse(string& s){
+    char l = 0;
+    char r = s.size()-1;
+    char tmp;
+    while (l < r){
+        tmp = s[l];
+        s[l] = s[r];
+        s[r] = tmp;
+        l++;
+        r--;
+    }
 }
 
 
@@ -70,6 +116,19 @@ int mystoi(string s){
     return signMultiplier*result;
 }
 
+string getstr(int v){
+    char c;
+    c = '0'+v;
+    string s(1,c);
+    return s;
+}
+
 int getint(char c){
     return c-'0';
+}
+
+int isNeg(int x){
+    int y;
+    y = (unsigned)x >> ((int)sizeof(x)*8-1); // extract the left most bit. unsigned x to not preserve sign. sizeof() returns size_t, cast to int.
+    return y;
 }

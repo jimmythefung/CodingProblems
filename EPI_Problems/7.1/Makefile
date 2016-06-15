@@ -45,8 +45,16 @@ $(FILENAME).o: $(FILENAME).cpp
 clean:
 	rm -f *.o a.out core $(FILENAME)
 
+
 # "all" target is useful if your Makefile builds multiple programs.
 # Here we’ll have it first do "clean", and rebuild the main target.
 
 .PHONY: all
 all: clean $(FILENAME)
+
+
+# "run" does the full service: clean, compile and execute.
+
+.PHONY: run
+run: clean $(FILENAME)
+	./$(FILENAME)
