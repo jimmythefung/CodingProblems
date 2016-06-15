@@ -19,8 +19,10 @@ void sreverse(string& s);
 int main(){
    
     // test integer to string
-    int val = -203914;
+    int val = -17381;
+    int val2 = 0;
     cout << "Convert interger "<< val << " to string: '"<< myitos(val) << "'"<< endl;
+    cout << "Convert interger "<< val2 << " to string: '"<< myitos(val2) << "'"<< endl;
 
     // test string to integer
     string s = "-42912";
@@ -52,7 +54,7 @@ void printv(vector<int>& A){
 
 string myitos(int x){
     string signplace   = "";
-    string significant = "";
+    string significant = (x==0) ? "0" : "";  // corner case when x=0, while loop was skipped.
     int r = 0;
     string result ="";
 
