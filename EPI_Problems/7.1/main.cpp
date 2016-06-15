@@ -9,19 +9,22 @@ using namespace std;
 
 /* Function Prototyes */
 void printv(vector<int>& A);
-int stoi(string s);
+int mystoi(string s);
 int getint(char c);
 
 int main(){
-    string s = "123";
+    string s = "65550";
+    cout << "Input string: " << s << " is type: " << typeid(s).name() << endl;
+    cout << "mystoi output: "  << mystoi(s) << " is type: " << typeid(mystoi(s)).name() << endl;
+
+    /*
     int c;
-
-
     c = s[0]-'0';
     cout << c << endl;
     cout << "Type of string is: " << typeid("string").name() << endl;
     cout << "Type of int is: " << typeid(c).name() << endl;
     cout << "size of int is: " << sizeof(c) << endl;
+    */
     return 0;
 }
 
@@ -34,14 +37,14 @@ void printv(vector<int>& A){
 }
 
 
-int stoi(string s){
+int mystoi(string s){
     int exp;
-    int place;
+    unsigned place;  // s.size() is unsigned. So use unsigned for place
     int result=0;
 
     exp = s.size()-1;
     for(place=0; place < s.size(); place++){
-        result = result + getint[place]*pow(10,exp);
+        result = result + getint(s[place])*pow(10, exp);
         exp--;
     }
     return result;
