@@ -13,16 +13,31 @@ using namespace std;
 #include <vector>
 
 
-class MyList {
-    public:
-
-    // default constructor
-
-    // Constructor
-    
-    // Copy Constructor
-
-    // Destructor
+/*
+ * A node in linked list
+ */
+template <typename T>
+struct Node {
+    shared_ptr<T>       data;
+    shared_prt<Node<T>> next;
 };
+
+/*
+ * A linked list.
+ * 'head' points to the first node in the list
+ */
+template <typename T>
+struct List {
+    shared_ptr<Node<T>> head;
+};
+
+/*
+ * Initialize an empty list
+ */
+template <typename T>
+static inline void initList(struct List *list)
+{
+    list->head = 0;
+}
 
 #endif
