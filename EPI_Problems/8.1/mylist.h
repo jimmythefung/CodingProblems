@@ -18,13 +18,17 @@ using namespace std;
 struct Node{
     int data;
     Node* next;
+    Node* prev;
 };
 
 struct List{
     Node* head;
+    Node* tail;
+
     // default constructor
     List(){
         head = NULL;
+        tail = NULL;
     }
 };
 
