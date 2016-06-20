@@ -12,32 +12,40 @@ using namespace std;
 #include <string>
 #include <vector>
 
-
 /*
- * A node in linked list
+ * A Linked List node
  */
-struct Node {
-    int   data;
-    shared_ptr<Node> next;
+struct Node{
+    int data;
+    Node* next;
+};
+
+struct List{
+    Node* head;
+    // default constructor
+    List(){
+        head = NULL;
+    }
 };
 
 /*
- * A linked list.
- * 'head' points to the first node in the list
+ * Search for a key
  */
-struct List {
-    shared_ptr<Node> head;
-};
+Node* findNode(List* L, int key);
 
 /*
- * Initialize an empty list
+ * Insert a node at front
  */
-static inline void initList(shared_ptr<List> L)
-{
-    L->head = 0;
-}
+Node* addFront(List* L, int x);
 
-/* functions */
-shared_ptr<Node> addfront(shared_ptr<List> L, int x);
-void printList(shared_ptr<List> L);
+/*
+ * Delete a node at front
+ */
+void* popFront(List* L);
+
+/*
+ * Remove all nodes
+ */
+void removeList(List* L);
+
 #endif

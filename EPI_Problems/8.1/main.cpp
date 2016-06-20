@@ -12,16 +12,37 @@ using namespace std;
 
 /* Function Prototyes */
 void printv(vector<int>& A);
+void printList(List* L);
 
 int main(){
-    shared_ptr<List> L (new List());
-    //List L;
-    initList(L);
-    addfront(L, 8);
-    addfront(L, 1);
-    addfront(L, 3);
+    // Dynamically allocated new list (remember to delete)
+    List* L = new List();
+
+    //
+    addFront(L, 8);
+    addFront(L, 1);
+    addFront(L, 3);
+    cout << "new list: ";
     printList(L);
 
+
+    // Find node
+    Node* n = findNode(L, 3);
+    cout << "find node value returned: "<< n->data << endl;
+    
+    // Delete
+    popFront(L);
+    cout << "pop front: ";
+    printList(L);
+
+    // Remove all list
+    removeList(L);
+    cout << "Remove all: ";
+    printList(L);
+
+
+    // clean up L
+    delete L;
 
     return 0;
 }
