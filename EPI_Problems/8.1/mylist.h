@@ -52,4 +52,9 @@ void* popFront(List* L);
  */
 void removeList(List* L);
 
+/*
+ * Complementary print methods
+ */
+void printv(vector<int>& A);
+void printMyList(List* L);
 #endif

@@ -37,6 +37,7 @@ Node* findNode(List* L, int key){
     }
     return NULL;
 }
+
 void* popFront(List* L){
     if (L->head != NULL){
         Node *n = L->head->next;
@@ -53,11 +54,19 @@ void removeList(List* L){
     }
 }
 
-void printList(List* L){
+void printMyList(List* L){
     Node* n = L->head;
     while(n != 0){
         cout << n->data << " ";
         n = n->next; // equivalent to n=(*n).next
+    }
+    cout << endl;
+}
+
+void printv(vector<int>& A){
+    vector<int>::iterator it;
+    for(it=A.begin(); it<A.end(); it++){
+        cout << *it << " ";
     }
     cout << endl;
 }
