@@ -77,6 +77,35 @@ struct BST{
         }
     }
 
+    // find
+    tNode* find(int x){
+        return RFind(root, x);
+    }
+    tNode* RFind(tNode* n, int x){
+        // leaf's child
+        if (n==NULL){
+            return NULL;
+        }
+        // found x
+        else if (x == n->data){
+            return n;
+        }
+        // x is smaller
+        else if (x < n->data){
+            return RFind(n->L, x);
+        }
+        // x is equal or bigger
+        else{
+            return RFind(n->R, x);
+        }
+    }
+
+
+    // remove tree node - must use recursion
+    bool remvove(int x){
+        return false;
+    }
+
     // traverse
     void traverse( void (*f)(tNode*) ){
         queue<tNode*> q;
@@ -98,7 +127,7 @@ struct BST{
         }
     }
 
-    static void printNode(tNode* n){ // static because traverse takes function from global namespace
+    static void printNode(tNode* n){ // static - visible from global namespace
         cout <<  n->data << " ";
     }
 
