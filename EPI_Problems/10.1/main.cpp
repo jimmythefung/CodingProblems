@@ -10,6 +10,30 @@
 
 using namespace std;
 
+void visit(tNode* n){
+    cout << n->data << " ";
+}
+void inOrder(tNode* n){
+    if (n!=NULL){
+        inOrder(n->L);
+        visit(n);
+        inOrder(n->R);
+    }
+}
+void preOrder(tNode* n){
+    if (n!=NULL){
+        visit(n);
+        preOrder(n->L);
+        preOrder(n->R);
+    }
+}
+void postOrder(tNode* n){
+    if (n!=NULL){
+        postOrder(n->L);
+        postOrder(n->R);
+        visit(n);
+    }
+}
 
 int main(){
 
@@ -23,6 +47,21 @@ int main(){
     // height balanced?
     cout << "height balanced? " << isHeightBalanced(t) << endl;
 
+    // in-order traversal
+    cout << "In order traversal  : ";
+    inOrder(t->root);
+    cout << endl;
+
+    // pre-order traversal
+    cout << "pre order traversal : ";
+    preOrder(t->root);
+    cout << endl;
+    
+    // post-order traversal
+    cout << "post order traversal: ";
+    postOrder(t->root);
+    cout << endl;
+    
     // clean up
     delete t;
     
