@@ -37,6 +37,10 @@ int main(){
     }
     
 
+    // int* p           // p is a pointer to int
+    // int* const p     // p is a constant pointer to int
+    // const int* p     // data pointed by p is constant; can not write to *p may be immuatable datatyp
+    // const int* const p // combines above
     /*
     priority_queue<string*, vector<string*>, function<bool (const string* const &, const string* const &)>> pq ([](const string* const &s1, const string* const &s2)->bool{return s1 < s2;}); 
     string* s1 = new string("4");
