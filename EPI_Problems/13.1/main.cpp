@@ -57,7 +57,13 @@ void palindromeTest(){
 }
 
 int main(){
-    palindromeTest();
+    //palindromeTest();
+
+    /*
+    set<string>::value_type s; // see chapter 11.3 - operatiosn on associative containers
+    s = "mystring"; // this shows that set<string>::value_type is string. There's also key_type, mapped_type
+    cout << s << endl;
+    */
     return 0;
 }
 
