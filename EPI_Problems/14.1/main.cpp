@@ -14,6 +14,10 @@ vector<int> intersection(vector<int> &A, vector<int> &B){
     unsigned int a=0, b=0;
 
     while (true){
+
+        if(A[a]==A[a-1]){ a++; }
+        if(B[b]==B[b-1]){ b++; }
+
         if(A[a]==B[b]){
             r.push_back(A[a]);
             a++;
