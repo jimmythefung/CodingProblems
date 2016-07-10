@@ -1,9 +1,3 @@
-# File name is the problem number
-
-FILENAME = main
-
-# We’ll use gcc for C compilation and g++ for C++ compilation
-
 CC  = gcc
 CXX = g++ -std=c++11
 
@@ -27,29 +21,20 @@ LDFLAGS = -g
 
 LDLIBS =
 
-# The 1st target gets built when you type "make".
 
-$(FILENAME): $(FILENAME).o
-	$(CXX) -o $(FILENAME) $(FILENAME).o
+main: main.o mybst.o
+	$(CXX) -o main main.o mybst.o
 	rm *.o
 
-# Object files dependencies
-
-$(FILENAME).o: $(FILENAME).cpp
-#main.o: main.c myadd.h
-
-
-# Always provide the "clean" target that removes intermediate files.
+$main.o: main.cpp mybst.h
+$mybst.o: mybst.cpp mybst.h
 
 .PHONY: clean
 clean:
-	rm -f *.o a.out core $(FILENAME)
-
-# "all" target is useful if your Makefile builds multiple programs.
-# Here we’ll have it first do "clean", and rebuild the main target.
+	rm -f *.o a.out core main
 
 .PHONY: all
-all: clean $(FILENAME)
+all: clean main
 
 .PHONY: run
 run: clean main

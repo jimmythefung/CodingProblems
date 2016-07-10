@@ -1,1 +1,1 @@
-# Test if a binary tree satisfies the BST property. 
+## Implement Stack API with max() that gives the maximum element in stack.
