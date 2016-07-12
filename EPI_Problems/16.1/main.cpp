@@ -5,12 +5,9 @@
 #include <functional>
 #include <queue>
 #include <list>
-<<<<<<< HEAD
-=======
 #include <stack>
 #include <map>
 
->>>>>>> d983a3793f0c401bdecbb0beed4af8c38fe9d49e
 using namespace std;
 
 template <typename T> 
@@ -27,9 +24,6 @@ void printv2(vector<T> v, const string &s=string("Printing vector: ")){
     cout << endl;
 }
 
-<<<<<<< HEAD
-int main(){
-=======
 struct peg{
     string name;
     stack<int> p;
@@ -117,7 +111,6 @@ struct tower{
 };
 
 
-
 int main(){
     cout << "Provide tower height: ";
     int height;
@@ -126,7 +119,6 @@ int main(){
     t->start();
 
     delete(t);
->>>>>>> d983a3793f0c401bdecbb0beed4af8c38fe9d49e
     return 0;
 }
 
