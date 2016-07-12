@@ -5,6 +5,8 @@
 #include <functional>
 #include <queue>
 #include <list>
+#include <unordered_map>
+
 using namespace std;
 
 template <typename T> 
@@ -21,7 +23,50 @@ void printv2(vector<T> v, const string &s=string("Printing vector: ")){
     cout << endl;
 }
 
+// over counted solution
+int f(int x, vector<int> S, unordered_map<int, int> &cache){
+
+    // base case 1: x is 0; i.e. x = xlast-e = 0
+    if (x == 0){ 
+        return 1; 
+    }
+
+    // base case 2: x is in cache
+    if (cache.count(x)!= 0){
+        return cache[x];
+    }
+
+    // recursive case: f(x) = f(x-e1) + f(x-e2) + ... + f(x-en)
+    for (int e: S){     // 
+        if ( x-e >= 0 ){
+            cache[x] += f(x-e, S, cache);
+        }
+    }
+    return cache[x];
+}
+
+// over counted solution
+int buildcache(int n, vector<int> S){
+    unordered_map<int, int> cache;
+    int result;
+    result = f(n, S, cache);
+
+    for(auto it=cache.begin(); it!=cache.end(); it++){
+        cout << it->first<< " -> " << it->second << endl;
+    }
+    return result;
+}
+
+
+// over counted solution
+void countTest(){
+    int n = 12;
+    vector<int> S = {2,3,7};
+    cout << "Number of ways to get 12 from {2,3,7} is: " << buildcache(n, S) << endl;
+}
+
 int main(){
+    //countTest();
     return 0;
 }
 
