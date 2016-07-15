@@ -50,7 +50,13 @@ int get_y2k(int y){
     return b >> 1; // return b=2^k closest to, but less than, y
 }
 double pow_Ology(double x, int y, unordered_map<int, int> cache){
-    
+
+    // check for negative y:
+    if (y<0){
+        y = -y;
+        x = 1/x;
+    }
+
     // base case exponent is 0
     if (y==0){ return 1; }
 
