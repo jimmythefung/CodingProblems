@@ -6,6 +6,7 @@
 #include <queue>
 #include <list>
 #include <unordered_map>
+#include <map>
 
 using namespace std;
 
@@ -23,17 +24,42 @@ void printv2(vector<T> v, const string &s=string("Printing vector: ")){
     cout << endl;
 }
 
-void printDice(deque<vector<int>> q){
+void printQueue(deque<vector<int>> q){
     for(auto it=q.begin(); it!=q.end(); it++){
-        cout << "Sum=" << (*it)[0] << ": (";
+        cout << "(";
         for(auto v=(*it).begin()+1; v!=(*it).end(); v++){
             cout << *v;
             if (v+1 != (*it).end()){
                 cout << ", ";
             }
         }
-        cout << ")" << endl;
+        cout << ")->" << (*it)[0] << endl;
     }
+}
+
+void printTable(map<int, int> table){
+    for(auto it=table.begin(); it!=table.end(); it++){
+        int key = it->first;
+        int value = it->second;
+        cout << key << ": " << value << endl;
+    }
+}
+
+map<int, int> buildmap(deque<vector<int>> q){
+    int key;
+    map<int, int> table;
+    
+    for(auto it=q.begin(); it!=q.end(); it++){
+        
+        key = (*it)[0];
+        
+        if (table.count(key)==0){
+            table[key] = 1;
+        }else{
+            table[key] = table[key]+1;
+        }
+    }
+    return table;
 }
 
 deque<vector<int>> fairDice(int m, int n){
@@ -71,21 +97,28 @@ deque<vector<int>> fairDice(int m, int n){
             }
         }
     }
-
-    // print
-    printDice(q);
-
-
     return q;
 }
-int main(){
+
+void fairDiceTest(){
     int m, n;
+    deque<vector<int>> q;
+    map<int, int> table;
+
     cout << "Enter m, the number of sides: ";
     cin >> m;
     cout << "Enter n, the number of dice: ";
     cin >> n;
+    
+    q = fairDice(m,n);
+    table = buildmap(q);
 
-    fairDice(m,n);
+    printQueue(q);
+    printTable(table);
+}
+
+int main(){
+    fairDiceTest();
     return 0;
 }
 
