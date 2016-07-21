@@ -30,7 +30,7 @@ Given "abcd" and k=2
 We form combination by first initializing all choices into their own set:  
 k1 = { {a} {b} {c} {d} }  
 We call the above k0 set, and we store the content of k1 in a double-ended queue data structure.  
-
+  
 We will need 3 nested loops.  
 The first iterate the length of combination (so up to k)  
 The second iterate the items in current queue (length of elements gets bigger by 1 each iteration, but size of queue grow as n!)  
@@ -58,3 +58,19 @@ Loop (j=n):
 {d}d    
 Then we form k2:  
 k2 = { {aa}, {ab},..., {ba},..., {ca},..., {da},..{dd} } 
+  
+# Permutation like solution  
+This is a recursion method + iteration (the combining part).  
+Given "abc", we form permutation with base case where the length of individual set is 1: {a} {b} {c}.  
+Then for each element we insert the next letter at all possible locations using itereation (similar to moving decimals to the end).  
+In this case, we insert b:  
+(b)c  
+c(b)  
+  
+Then we return the recusion, take the next letter {a} and repeat  
+(a)bc  
+b(a)c  
+bc(a)  
+  
+The result of each step may be stored in double-ended queue or set, the latter can help remove duplicates to ensure uniqueness as needed.  
+Note in C++, set is implemented using Binary Search Tree, so there an underlying weak ordering. So set<b,c,a> compares equal to set<c,b,a>. They're all implmented as set<a,b,c>.  
