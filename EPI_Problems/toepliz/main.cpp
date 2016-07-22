@@ -29,15 +29,18 @@ bool checkD(int row, int col, vector<vector<int>> M){
 
     while(true){
         curr = M[col][row];
+        
+        // advance to next cell along diagonal
         col++;
         row++;
+
+        // check next diagonal cell is identical 
         if( col<n && row<m ){
             next = M[col][row];
             if( curr!=next ){
                 return false;
             }
-        }
-        else{
+        }else{
             break;
         }
     }
@@ -74,13 +77,14 @@ void printM(vector<vector<int>> M){
 }
 
 void isToeplizTest(){
-    vector<vector<int>> M = {
-        {6,7,8,9,2},
-        {4,6,7,8,9},
-        {1,4,6,7,8},
-        {0,1,4,6,7}
-    };
     cout << "Input matrix, M:" << endl;
+    vector<vector<int>> M = {
+        {6,4,1,0},
+        {7,6,4,1},
+        {8,7,6,4},
+        {9,8,7,6},
+        {2,9,8,7}
+    };
     printM(M);
     cout << "Is M toepliz? " <<(isToepliz(M)? "true":"false") << endl;
 }
