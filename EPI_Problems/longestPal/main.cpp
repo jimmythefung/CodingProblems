@@ -40,7 +40,7 @@ string longestPal(const string &s){
 }
 
 void longPalTest(){
-    string s = "gggaaa"
+    string s = "gggaaa";
     cout << "Input s: " << s << endl;
     cout << "Longest Palindrome: " << longestPal(s) << endl;
 }
