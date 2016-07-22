@@ -83,7 +83,7 @@ deque<deque<string>> helper(vector<string> A){
 
 
 int main(){
-    vector<string> A = {"a", "b", "c", "d"};
+    vector<string> A = {"1", "2", "3", "4"};
     deque<deque<string>> Q = helper(A);
     for(auto q=Q.begin(); q!=Q.end(); q++){
         for(auto e:(*q)){
