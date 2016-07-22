@@ -23,10 +23,10 @@ We incrasingly expand the parenthesis starting on the left, splitting the input 
 (123)(4)  
 (1234)  
   
-We iterate through all case (expand parenthesis using loop). For each case, we recursively solve R. And cache result with Dynamic Programming.
+We iterate through all case (expand parenthesis using loop). For each case, we recursively solve R. And cache result with Dynamic Programming.  
 Observe 
 R=(234) 
-yields subproblem (2)(34):    
+yields subproblem (2)(34):  
 R'=(34)  
 yields subproblem (3)(4):  
 R''=(4)  
