@@ -1,4 +1,6 @@
 # Print non overlapping pairs  
+https://www.careercup.com/question?id=5689327699886080  
+  
 ## Take an array and print non over lapping in order pairs. example:  
   
   
