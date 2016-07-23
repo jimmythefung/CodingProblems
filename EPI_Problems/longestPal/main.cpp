@@ -1,9 +1,12 @@
+#include <string>
 #include <iostream>
 #include <unordered_map>
+using namespace std;
 
 unordered_map<string, int>  buildFreq(const string &s){
     unordered_map<string, int> freq;
-    for(string c:s){
+    for(char ch:s){
+        string c(1,ch);
         if (freq.count(c)==0){
             freq[c] = 1;
         }else{
