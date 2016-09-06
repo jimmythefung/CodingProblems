@@ -75,3 +75,28 @@ bc(a)
 The result of each step may be stored in double-ended queue or set, the latter can help remove duplicates to ensure uniqueness as needed.  
 Note in C++, set is implemented using Binary Search Tree, so there an underlying weak ordering.  
 So set(b,c,a) compares equally to set(c,b,a). They're all implmented as set(a,b,c).  
+
+##Example codes  
+#Permutation-Like  
+def perm(s):  
+    if len(s) == 0:  
+        return ['']  
+    output = []  
+    for i in range(len(s)):  
+        pick = s[i]  
+        rest = s[:i] + s[i+1:] # each iteration, rest is 1 element less at s[i].  
+        for x in perm(rest):  
+            output.append(pick + x)  
+    return output  
+  
+#Combination-Like  
+def combo(s, n):  
+    if len(s)==0 or n==0:  
+        return ['']  
+    output = []  
+    for i in range(len(s)-n+1): # if len(s) < n, then no need to proceed, if len(s) == m, proceed just once  
+        pick = s[i]             # Guaranteeds solution contains pick  
+        rest = s[i+1:]          # Since solution containing pick has processed, rest excludes s[:i]  
+        for x in combo(rest, n-1):  
+            output.append(pick+x)  
+    return output  
