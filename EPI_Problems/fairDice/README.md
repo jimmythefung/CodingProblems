@@ -76,7 +76,7 @@ The result of each step may be stored in double-ended queue or set, the latter c
 Note in C++, set is implemented using Binary Search Tree, so there an underlying weak ordering.  
 So set(b,c,a) compares equally to set(c,b,a). They're all implmented as set(a,b,c).  
 
-##Example codes  
+##Example codes  (see permComboSet.py)
 #Permutation-Like  
 def perm(s):  
     if len(s) == 0:  
