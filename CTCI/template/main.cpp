@@ -5,6 +5,9 @@
 #include <functional>
 #include <queue>
 #include <list>
+#include <unordered_map>
+#include <algorithm>
+
 using namespace std;
 
 template <typename T> 
