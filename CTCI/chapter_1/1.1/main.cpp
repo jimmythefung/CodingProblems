@@ -6,6 +6,7 @@
 #include <queue>
 #include <list>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ bool isUnique(string s){
     unordered_map<char, int> cache;
 
     // build hashTable to count the frequency of characters
-    for(int i=0; i < s.size() ; i++){
+    for(size_t i=0; i < s.size() ; i++){
         // check if character already in cache
         if (cache.count(s[i])==0){
             cache[s[i]] = 1;
@@ -49,9 +50,23 @@ bool isUnique(string s){
     return flag;
 }
 
+
+bool isUniqueNoDS(string s){
+    sort(s.begin(), s.end());
+    for(size_t i=1; i < s.size(); i++){
+        if (s[i]==s[i-1]){
+            return false;
+        }
+    }
+    return true;
+}
+
 int main(){
     string s = "jimmyfung";
     cout << "Is "+s+" unique? " << isUnique(s) << endl;
+
+    string s2 = "jimyfung";
+    cout << "Is "+s2+" unique? " << isUniqueNoDS(s2) << endl;
 
     return 0;
 }
