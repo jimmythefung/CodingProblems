@@ -7,6 +7,8 @@
 #include <list>
 #include <unordered_map>
 #include <algorithm>
+#include <deque>
+
 
 using namespace std;
 
@@ -41,7 +43,26 @@ struct Graph{
     }
 };
 
+void BFSPrint(Node* &src){
+    deque<Node*> q;
+    q.push_back(src);
+    cout << "BFS: ";
+    while(!q.empty()){
+        Node* &n = q.front(); // only view front element
+        q.pop_front();   // only delete. returns nothing
+        
+        cout << n->name << " ";
+        n->visited = true;
 
+        for(Node* &neighbor : n->neighbors){
+            if(neighbor->visited==false){
+                q.push_back(neighbor);
+                neighbor->visited = true;
+            }
+        }
+    }
+    cout << endl;
+}
 
 int main(){
     
@@ -61,6 +82,7 @@ int main(){
     v6->neighbors = {v4};
     Graph *G = new Graph({v1,v2,v3,v4,v5,v6});
 
+    BFSPrint(v1);
     return 0;
 }
 
