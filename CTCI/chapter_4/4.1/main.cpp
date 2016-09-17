@@ -50,67 +50,61 @@ void clearQ(deque<Node*> &q){
     }
 }
 
+void resetGraph(Graph* G){
+    for(Node* &n : G->V){
+        n->visited = false;
+    }
+
+}
+
 deque<Node*> getAllNeighborsInQ(deque<Node*> &QofNodes){
     deque<Node*> result;
     for(Node* &n : QofNodes){
+        //n->visited = true;
         for(Node *neighbor : n->neighbors){
-            if (neighbor->visited==false){
-                result.push_back(neighbor);
+            result.push_back(neighbor);
+            //if (neighbor->visited==false){
+            //    result.push_back(neighbor);
                 //cout << neighbor->name;
-            }
         }
     }
     return result;
 }
 
 bool routeBetween(Node* &src, Node* &dst){
+    cout << "Searching route between: " << src->name << " and " << dst->name << ". Result: ";
     int bfsLevel = 0;
-    deque<Node*> srcQ, dstQ, bfsQ;
+    deque<Node*> visitedQ, unVisitedQ;
     src->visited = true;
-    dst->visited = true;
-    srcQ.push_back(src);
-    dstQ.push_back(dst);
+    visitedQ.push_back(src);
 
-    while(!srcQ.empty() or !dstQ.empty()){
+    while(!visitedQ.empty()){// or !dstQ.empty()){
         bfsLevel++;
 
-        // visit all next neighbor of srcQ
-        bfsQ = getAllNeighborsInQ(srcQ);
-        clearQ(srcQ);
-        while(!bfsQ.empty()){
-            Node* &s = bfsQ.front();
-            bfsQ.pop_front();
+        // visit all next neighbor of visitedQ
+        unVisitedQ = getAllNeighborsInQ(visitedQ);
+        clearQ(visitedQ);
+        while(!unVisitedQ.empty()){
+            Node* &s = unVisitedQ.front();
+            unVisitedQ.pop_front();
 
-            if(s->visited == true){
-                cout << s->name << " already visited. Return true." << endl;
-                return true;
-            }else{
-                cout << s->name << " visited. Setting visited=true." << endl;
+            if (s->visited == false){
                 s->visited = true;
-                srcQ.push_back(s);
+                visitedQ.push_back(s);
             }
         }
-
-        // visit all next neighbor of dstQ
-        bfsQ = getAllNeighborsInQ(dstQ);
-        clearQ(dstQ);
-        while(!bfsQ.empty()){
-            Node* &d = bfsQ.front();
-            bfsQ.pop_front();
-
-            if(d->visited == true){
-                return true;
-            }else{
-                d->visited = true;
-                dstQ.push_back(d);
-            }
+        
+        if(dst->visited==true){
+            cout << "Found" << endl;
+            return true;
         }
     }
-    cout << "No path found. Return false." << endl;
+    //cout << "No path found. Return false." << endl;
+    cout << "Not Found." << endl;
     return false;
 }
 
-bool isConnected(Graph* &G){
+bool isConnected(Graph* G){
     int n,i,j;
     n = G->V.size(); // number of vertex in G
     
@@ -119,8 +113,11 @@ bool isConnected(Graph* &G){
         j=i+1;
         while( j < n ){
             if(!routeBetween(G->V[i], G->V[j])){
+                cout << "No route between " << G->V[i]->name << " and " << G->V[j]->name << endl;
                 return false;
             }
+            // need to reset all the vertex to unvisited
+            resetGraph(G);
             j++;
         }
         i++;
@@ -168,12 +165,12 @@ int main(){
     Graph *G = new Graph({v1,v2,v3,v4,v5,v6});
 
     // Check graph G is connected
-    //cout << "Is graph G connected? " << isConnected(G) << endl;
+    cout << "Is graph G connected? " << isConnected(G) << endl;
     
     //BFSPrint(v1);
-    //Node* v7 = new Node(7);
-    //v7->neighbors = {};
-    cout << routeBetween(v1, v2) << endl;
+    Node* v7 = new Node(7);
+    v7->neighbors = {};
+    routeBetween(v1, v7);
     
     return 0;
 }
