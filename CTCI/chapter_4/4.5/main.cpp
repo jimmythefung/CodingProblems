@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <deque>
 #include <list>
+#include <limits>
 
 using namespace std;
 
@@ -37,39 +38,42 @@ struct treeNode{
     }
 };
 
-
-int getDepth(treeNode* root, bool &is_balanced_flag){
-
+bool inOrderDFS(treeNode* root, int &last){
     if (root == NULL){
-        return 0;
+        return true;
+    }
+    
+    // explore left
+    bool L = inOrderDFS(root->left, last);
+
+    // visit current node
+    if (root->data < last){
+        return false;
+    }else{
+        last = root->data;
     }
 
-    int L = getDepth(root->left, is_balanced_flag);
-    int R = getDepth(root->right, is_balanced_flag);
+    // explore right
+    bool R = inOrderDFS(root->right, last);
 
-    if (abs(L-R)>1){
-        is_balanced_flag = false;
-    }
-
-    return max(L,R)+1;
-
+    return L&R;
 }
 
-bool isBalanced(treeNode* root){
-    bool flag = true;
-    getDepth(root, flag);
-    return flag;
+bool isBST(treeNode* root){
+    int min = numeric_limits<int>::min();
+    return inOrderDFS(root, min);
 }
 
 int main(){
     treeNode* root = new treeNode(5);
     root->left = new treeNode(3);
-    root->right = new treeNode(7); 
+    root->right = new treeNode(7);
+    root->left->left = new treeNode(9);
     root->right->right = new treeNode(7); 
     root->right->right->right = new treeNode(7); 
-
-    cout << "Is root balanced? ";
-    isBalanced(root)? cout << "True" : cout << "False";
+    
+    cout << "Is root BST? ";
+    isBST(root)? cout << "True" : cout << "False";
     cout << endl;
     return 0;
 
