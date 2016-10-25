@@ -11,6 +11,7 @@
 #include <utility>
 #include <deque>
 #include <set>
+#include <map>
 
 using namespace std;
 
@@ -78,6 +79,7 @@ int robot(vector<vector<int>> &M){
     deque< pair<int, int> > qB;
     set< pair<int, int> > visitedA;
     set< pair<int, int> > visitedB;
+    //map<pair<int,int>, vector<pair<int,int>>> path;
     cell = make_pair(0,0);
     qA.push_back(cell);
     cell = make_pair(M.size()-1, M[0].size()-1);
