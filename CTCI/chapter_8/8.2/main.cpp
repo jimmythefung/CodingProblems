@@ -72,7 +72,7 @@ void pushNextMoves(pair<int,int> &p, deque<pair<int,int>> &q, set<pair<int,int>>
 
 }
 
-bool robot(vector<vector<int>> M){
+int robot(vector<vector<int>> M){
     pair<int, int> cell;
     deque< pair<int, int> > qA;
     deque< pair<int, int> > qB;
@@ -87,10 +87,13 @@ bool robot(vector<vector<int>> M){
     int turn=0;
     int qA_size = 0;
     int qB_size = 0;
+    int A_steps = 0;
+    int B_steps = 0;
     while(qA.size()!=0 || qB.size()!=0){
 
         // A's turn
         if(turn%2==0){
+            A_steps++;
             qA_size = qA.size();
             
             // get all next BFS node into qA
@@ -99,7 +102,7 @@ bool robot(vector<vector<int>> M){
                 // reached solution!
                 if (visitedB.count(qA.front())!=0){
                     // what return type do we want??
-                    return true;
+                    return A_steps+B_steps-1;
                 }
                 else{
                     pushNextMoves(qA.front(), qA, visitedA, M);
@@ -108,7 +111,26 @@ bool robot(vector<vector<int>> M){
                 }
             }
         }
+
+        // B's turn
         else{
+            B_steps++;
+            qB_size = qB.size();
+            
+            // get all next BFS node into qA
+            for(int i=0; i < qB_size; i++){
+
+                // reached solution!
+                if (visitedA.count(qB.front())!=0){
+                    // what return type do we want??
+                    return A_steps+B_steps-1;
+                }
+                else{
+                    pushNextMoves(qB.front(), qB, visitedB, M);
+                    visitedB.insert(qB.front());
+                    qB.pop_front();
+                }
+            }
         }
 
         turn++;
