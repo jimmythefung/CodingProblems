@@ -4,4 +4,4 @@ Design an algorithm to find a path for the robot from top left to the bottom rig
 
 # Idea  
 Idea 1: DFS right, down, left, up.  
-Idea 2: BFS to find shortest path.
+Idea 2: BFS to find shortest path. This returns the number of steps to destination.

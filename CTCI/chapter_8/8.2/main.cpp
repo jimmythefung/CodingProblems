@@ -48,31 +48,31 @@ void pushNextMoves(pair<int,int> &p, deque<pair<int,int>> &q, set<pair<int,int>>
 
     // right
     nextCell = make_pair(r, c+1);
-    if (visited.count(nextCell)==0 && r>=0 && r<=h && c+1>=0 && c+1<=w){
+    if (r>=0 && r<=h && c+1>=0 && c+1<=w && M[r][c+1]!=0 && visited.count(nextCell)==0){
         q.push_back(nextCell);
     }
 
     // left
     nextCell = make_pair(r, c-1);
-    if (visited.count(nextCell)==0 && r>=0 && r<=h && c-1>=0 && c-1<=w){
+    if (r>=0 && r<=h && c-1>=0 && c-1<=w && M[r][c-1]!=0 && visited.count(nextCell)==0){
         q.push_back(nextCell);
     }
 
     // up
     nextCell = make_pair(r-1, c);
-    if (visited.count(nextCell)==0 && r-1>=0 && r-1<=h && c>=0 && c<=w){
+    if (r-1>=0 && r-1<=h && c>=0 && c<=w && M[r-1][c]!=0 && visited.count(nextCell)==0){
         q.push_back(nextCell);
     }
     
     // down
     nextCell = make_pair(r+1, c);
-    if (visited.count(nextCell)==0 && r+1>=0 && r+1<=h && c>=0 && c<=w){
+    if (r+1>=0 && r+1<=h && c>=0 && c<=w && M[r+1][c]!=0 && visited.count(nextCell)==0){
         q.push_back(nextCell);
     }
 
 }
 
-int robot(vector<vector<int>> M){
+int robot(vector<vector<int>> &M){
     pair<int, int> cell;
     deque< pair<int, int> > qA;
     deque< pair<int, int> > qB;
@@ -87,8 +87,8 @@ int robot(vector<vector<int>> M){
     int turn=0;
     int qA_size = 0;
     int qB_size = 0;
-    int A_steps = 0;
-    int B_steps = 0;
+    int A_steps = -1;
+    int B_steps = -1;
     while(qA.size()!=0 || qB.size()!=0){
 
         // A's turn
@@ -102,7 +102,7 @@ int robot(vector<vector<int>> M){
                 // reached solution!
                 if (visitedB.count(qA.front())!=0){
                     // what return type do we want??
-                    return A_steps+B_steps-1;
+                    return A_steps+B_steps;
                 }
                 else{
                     pushNextMoves(qA.front(), qA, visitedA, M);
@@ -123,7 +123,7 @@ int robot(vector<vector<int>> M){
                 // reached solution!
                 if (visitedA.count(qB.front())!=0){
                     // what return type do we want??
-                    return A_steps+B_steps-1;
+                    return A_steps+B_steps;
                 }
                 else{
                     pushNextMoves(qB.front(), qB, visitedB, M);
@@ -137,7 +137,7 @@ int robot(vector<vector<int>> M){
     }
     
 
-    return 0;
+    return -1;
 }
 
 
@@ -153,6 +153,8 @@ int main(){
     };
 
     printM(M);
+
+    cout << "Number of steps for robot:" << robot(M) << endl;
     return 0;
 }
 
