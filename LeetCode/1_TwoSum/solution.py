@@ -1,36 +1,21 @@
 class Solution(object):
     def twoSum(self, nums, target):
-        from collections import deque
         """
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
         """
         
-        indTable = dict()
-        i=0
-        for e in nums:
-            if e not in indTable:
-                indTable[e] = deque()
-                indTable[e].append(i)
-            else:
-                indTable[e].append(i)
-            i += 1
-        
-        sortedArr = sorted(nums)
-        
-        a = 0
-        b = len(sortedArr)-1
-        
-        while True:
-            mySum = sortedArr[a] + sortedArr[b]
-            if (mySum == target):
-                return [indTable[sortedArr[a]].popleft(), indTable[sortedArr[b]].popleft()]
-            elif mySum > target:
-                b -= 1
-            else:
-                a += 1
+        return twoSum(nums, target)
             
-            if a >= b:
-                break
-            
+def twoSum(nums, target):
+    B = dict() # t = (delta) + B, this maps: delta=(t-B) -> index(B); so we check if at a later time that delta is found
+
+    i = 0
+    for delta in nums:
+    	if delta in B:
+    		return [B[delta], i]
+    	
+    	B[ target-delta ] = i # newDelta = target-delta
+    	i += 1
+    return [0, 0]
