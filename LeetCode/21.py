@@ -15,23 +15,24 @@ class Solution(object):
 
         
 def merge(l1, l2):
-	head = l1
-	prev = l1
-	a1 = l1.next
-	b1 = l2
-	if l1.val > l2.val:
-		return merge(l2, l1)
+    if l1==None:
+        return l2
+    if l2==None:
+        return l1
+    head = l1
+    while l1 != None:
+        x = l1.next
+        y = l2.next
+        l1.next = l2
+        l2.next = x
+        l1 = x
+        l2 = y
+    return head
 
-	while b1!=None:
-		while a1.val < b1.val:
-			prev = a1
-			a1 = a1.next
-			if a1==None:
-				prev.next = b1
-				return head
-		prev.next = b1
-		b1 = b1.next
-		
-		prev = a1
-		a1 = a1.next
-	return head
+l1 = ListNode(1)
+a = ListNode(3)
+b = ListNode(5)
+a.next=b
+l1.next=a
+
+l2 = ListNode(0)
