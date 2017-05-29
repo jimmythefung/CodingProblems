@@ -1,0 +1,44 @@
+-Delete nth node fro ma single link list
+-Find if a number is a palindrome
+-Given a binary searh tree, build a link list connecting the tree leaves from left to right.
+-Given an array of only 0s and 1s, sort them in place. (solution idea: 2-partitions)
+-Given an array of only 0s, 1s, and 2s, sort them in place. (solution idea: 3-partition, with careful bookkeeping)
+-Given n sorted linked list, merge them
+-Given an n by n matrix, and given another matrix m by m. Find if the latter matrix is a subset of the former.
+-Understand Binary Tree, Binary Search Tree, in-order, pre-order, post-order.
+-Given inorder, preorder, or preorder element array, reconstruct the original tree.
+-Given a tree, build its mirror.
+-Find if a given tree is a subtree of another
+-Check if a word is an anagram
+-Find all permutation of a string
+-Reverse a single linked list
+-Make a deep copy of a graph
+-KMP algorithm
+-Delete a substring from a larger substring
+-Find first character in s2 that is not in s1
+-Find the first 100 occurance of all the pattern (in a string)
+-Replace " " with "%20"
+-Implement the 4 mathematical operators (+, -, *, / ) without using them
+-Find the maximum (or minimum) subarray
+-Find a linked list is a palindrome
+-Find if two numbers exist in a given array sums to a given value.
+-Word chain problem (look it up)
+-Design an elevator
+
+Interview 1
+-Given a graph that represents build dependency (of a project, or program), print them in order.
+-Two linked lists are partially merged. Given that two linked list, return the merge point
+-Given a gameboard of "Connect 4", determine if there's a winner. (Also think about how to represent gameboard)
+-Convert string to float (atof).
+
+Interview 2
+-Kth nearest problem
+-Given a binary representation of a value, return the position of the first occruance of set bit
+-Describe how would you find all the occruance of a substring in a super long string in a computer with 100 processor cores.
+-Given a binary search tree, encode it into an array, and reconstruct the tree from the array
+
+Interview 3
+-You are given a function draw(x,y) that draws a pixel on the computer screen. Given a the radius R of a circle, write a function that draws it.
+-Kth nearest problem
+-Word chain problem (look it up)
+-Write a function that evaluates a polynomial
