@@ -48,8 +48,3 @@ def swapPairsHelper(head):
             n = n.next
             i += 1
         return head
-
-def oneSwap(a, b, c):
-    b.next = a
-    a.next = c
-    return b
