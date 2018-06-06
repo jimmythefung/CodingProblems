@@ -1,40 +1,57 @@
 def mapDecoding(message):
-    cache = {}
-    rDecode(message, cache)
-    return cache[message]%1000000007
+    fibCache = {}
+    return fibSolve(message, fibCache)%1000000007
 
-def rDecode(s, cache):
-    # Base and corner cases
-    if s in cache:
-        return cache[s]
-    if len(s)==2:
-        if s[0] == '0':
-            cache[s] = 0
-        else:
-            cache[s] = 2 if int(s)<=26 and s[1]!='0' else 1
-        return cache[s]
-    if len(s)==1:
-        cache[s] = 1 if s!='0' else 0
-        return cache[s]
+def fibSolve(s, fibCache):
+    # Base case: size 0
     if len(s)==0:
-        cache[s] = 1
-        return cache[s]
+        return 1
 
-    # first: first letter plus the result of remaining string
-    if s[0] == '0':
-        first = 0
+    # Base case: size 1
+    if s[0]=='0':
+        fibCache[0] = 0
     else:
-        first = rDecode(s[1:], cache)
+        fibCache[0] = 1
+    if len(s) == 1:
+        return fibCache[0]
 
-    # second: first 2 letters plus the result of remaining string
-    second = 0
-    if int(s[:2]) <= 26:
-        if s[0]!='0' and s[:2] != '00':
-            second = rDecode(s[2:], cache)
+    # Base case: size 2
+    if s[1]=='0':
+        fibCache[1] = 1 if int(s[0:2])<=26 else 0
+    else:
+        if s[0]=='0':
+            fibCache[1] = 1
+        else:
+            fibCache[1] = 2 if int(s[0:2])<=26 else 1
 
-    # combine result
-    cache[s] = first + second
-    return cache[s]
+    # Case size 3 and higher
+    i = 2
+    while i < len(s): # Note: i-1 -> keep last char, whereas i-2 -> keep last 2 chars
+        # Determine i-1
+        if s[i]!='0':
+            i_1 = fibCache[i-1]
+            # Determine i-2
+            if s[i-1]=='0': # case 0x
+                i_2 = 0
+            else:			# case yx
+                if int(s[i-1:i+1]) <= 26:
+                    i_2 = fibCache[i-2]
+                else:
+                    i_2 = 0
+        else:
+            i_1 = 0
+            # Determine i-2
+            if s[i-1]=='0':	# case '00'
+                    i_2 = 0
+            else:			# case 'y0'
+                if int(s[i-1:i+1]) <= 26:
+                    i_2 = fibCache[i-2]
+                else:
+                    i_2 = 0
 
-message = "10122110"
-print( mapDecoding(message) )
+        fibCache[i] = i_1 + i_2
+        i+=1
+
+    return fibCache[ len(s)-1 ]
+
+print(mapDecoding("123"))
